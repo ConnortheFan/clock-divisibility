@@ -2,6 +2,8 @@
 
 # Given an arbitrary number x (between 1 and 9) and an arbitrary current time y in the 24-hour format described above, how many minutes will Bob have to wait until the clock displays a time such that all 4 digits of the time are perfectly divisible by x? For example, if x is 3 and y is 03:23, the answer is 7 minutes, because 7 minutes after y would be 03:30, and all 4 digits of this resulting time are divisible by x.
 
+# This isn't a Greedy algorithm, but I felt this implementation was easier
+
 import random
 
 
@@ -14,10 +16,13 @@ def find_problem(x, time):
       problem = time.index(i)
       return problem
   return 4
-  
-wait_time = 0
+
 
 def format_time(time):
+  '''
+  Returns a string that has the time formatted correctly.
+  Ex. [0,2,3,4] returns "Time: 02:34"
+  '''
   formatted_time = "Time: "
   formatted_time += str(time[0])
   formatted_time += str(time[1])
@@ -47,6 +52,9 @@ def convert_clock(time):
   return time
 
 def find_wait_time(x, time):
+  '''
+  Finds wait_time by incrementing and converting the time until there is no remainder.
+  '''
   global wait_time
   while find_problem(x, time) != 4:
     wait_time += 1
@@ -68,6 +76,8 @@ else:
 min_ten = random.randrange(6)
 min_one = random.randrange(10)
 time = [hour_ten, hour_one, min_ten, min_one]
+  
+wait_time = 0
 
 print("x:", x)
 print(format_time(time))
