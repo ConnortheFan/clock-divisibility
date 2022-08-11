@@ -55,7 +55,7 @@ def find_wait_time(x, time):
   '''
   Finds wait_time by incrementing and converting the time until there is no remainder.
   '''
-  global wait_time
+  wait_time = 0
   while find_problem(x, time) != 4:
     wait_time += 1
     time[3] += 1
@@ -77,8 +77,6 @@ min_ten = random.randrange(6)
 min_one = random.randrange(10)
 time = [hour_ten, hour_one, min_ten, min_one]
   
-wait_time = 0
-
 print("x:", x)
 print(format_time(time))
 find_wait_time(x, time)
