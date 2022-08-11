@@ -5,11 +5,32 @@
 import random
 
 x = random.randrange(1, 10)
-hour_ten = random.randrange(2)
-hour_one = random.randrange(10)
-min_ten = random.randrange(7)
+hour_ten = random.randrange(3)
+if hour_ten == 2:
+  hour_one = random.randrange(4)
+else:
+  hour_one = random.randrange(10)
+min_ten = random.randrange(6)
 min_one = random.randrange(10)
 y = [hour_ten, hour_one, min_ten, min_one]
+print("x:", x)
+print("Time:", y)
 
-def clock_divide(x, y):
-  
+def find_problem(x, y):
+  for i in y:
+    if i % x != 0:
+      problem = y.index(i)
+      return problem
+  return 4
+
+def min_one_diff(x, y):
+  return wait_time
+
+def min_ten_diff(x, y):
+  min_one_diff(x, y)
+
+def hour_one_diff(x, y):
+  min_ten_diff(x, y)
+
+def hour_ten_diff(x, y):
+  hour_one_diff(x, y)
