@@ -4,7 +4,62 @@
 
 import random
 
+
+def find_problem(x, time):
+  '''
+  Finds and returns the index in time where the problem is. If there is no problem, return 4.
+  '''
+  for i in time:
+    if i % x != 0:
+      problem = time.index(i)
+      return problem
+  return 4
+  
+wait_time = 0
+
+def format_time(time):
+  formatted_time = "Time: "
+  formatted_time += str(time[0])
+  formatted_time += str(time[1])
+  formatted_time += ":"
+  formatted_time += str(time[2])
+  formatted_time += str(time[3])
+  return formatted_time
+
+def convert_clock(time):
+  '''
+  Converts time into proper time format
+  '''
+  if time[3] == 10:
+    time[3] = 0
+    time[2] += 1
+  if time[2] == 6:
+    time[2] = 0
+    time[1] += 1
+  if time[0] != 2:
+    if time[1] == 10:
+      time[1] = 0
+      time[0] += 1
+  if time[0] == 2:
+    if time[1] == 4:
+      time[0] = 0
+      time[1] = 0
+  return time
+
+def find_wait_time(x, time):
+  global wait_time
+  while find_problem(x, time) != 4:
+    wait_time += 1
+    time[3] += 1
+    time = convert_clock(time)
+  print("Wait time:", wait_time, "minutes")
+  print("New time:", format_time(time))
+  return wait_time
+
+# Create x as a random digit 1 to 9
 x = random.randrange(1, 10)
+
+# Create time as a random list of valid digits
 hour_ten = random.randrange(3)
 if hour_ten == 2:
   hour_one = random.randrange(4)
@@ -12,25 +67,9 @@ else:
   hour_one = random.randrange(10)
 min_ten = random.randrange(6)
 min_one = random.randrange(10)
-y = [hour_ten, hour_one, min_ten, min_one]
+time = [hour_ten, hour_one, min_ten, min_one]
+
 print("x:", x)
-print("Time:", y)
+print(format_time(time))
+find_wait_time(x, time)
 
-def find_problem(x, y):
-  for i in y:
-    if i % x != 0:
-      problem = y.index(i)
-      return problem
-  return 4
-
-def min_one_diff(x, y):
-  return wait_time
-
-def min_ten_diff(x, y):
-  min_one_diff(x, y)
-
-def hour_one_diff(x, y):
-  min_ten_diff(x, y)
-
-def hour_ten_diff(x, y):
-  hour_one_diff(x, y)
