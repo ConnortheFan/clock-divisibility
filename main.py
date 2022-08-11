@@ -3,3 +3,13 @@
 # Given an arbitrary number x (between 1 and 9) and an arbitrary current time y in the 24-hour format described above, how many minutes will Bob have to wait until the clock displays a time such that all 4 digits of the time are perfectly divisible by x? For example, if x is 3 and y is 03:23, the answer is 7 minutes, because 7 minutes after y would be 03:30, and all 4 digits of this resulting time are divisible by x.
 
 import random
+
+x = random.randrange(1, 10)
+hour_ten = random.randrange(2)
+hour_one = random.randrange(10)
+min_ten = random.randrange(7)
+min_one = random.randrange(10)
+y = [hour_ten, hour_one, min_ten, min_one]
+
+def clock_divide(x, y):
+  
